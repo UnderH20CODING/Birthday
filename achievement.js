@@ -30,7 +30,6 @@ function handleSubmit() {
     $("achievement-card").querySelector(".achievement-title").textContent = "Achievement Unlocked";
     $("achievement-card").querySelector(".achievement-sub").textContent = "Spawnpoint Synced";
     $("code-reveal").textContent = CONFIG.SHARED_CODE;
-    $("return-link").href = "index.html?unlocked=1";
     $("unlock-box").classList.remove("hidden");
   } else {
     feedback.textContent = "Not synced yet. Try again.";

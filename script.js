@@ -51,9 +51,9 @@ function handleCodeSubmit() {
   const feedback = $("feedback");
 
   if (normalize(val) === normalize(CONFIG.SHARED_CODE)) {
-    feedback.textContent = "Correct! Unlocking...";
+    feedback.textContent = "Correct! One last trial...";
     feedback.className = "feedback good";
-    setTimeout(playChestThenReveal, 400);
+    setTimeout(() => { window.location.href = "quiz.html"; }, 500);
   } else {
     feedback.textContent = "Nope. That's not it, PvP legend. Try again.";
     feedback.className = "feedback bad";
@@ -63,11 +63,11 @@ function handleCodeSubmit() {
   }
 }
 
-/* ---------- prefill code if arriving from spawn.html ---------- */
-(function prefillFromSpawn() {
+/* ---------- arriving back here after passing the quiz ---------- */
+(function checkQuizPassed() {
   const params = new URLSearchParams(window.location.search);
-  if (params.get("unlocked") === "1") {
-    $("code-input").value = CONFIG.SHARED_CODE;
+  if (params.get("quizpassed") === "1") {
+    playChestThenReveal();
   }
 })();
 

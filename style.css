@@ -316,6 +316,54 @@ body{
   text-align: center;
 }
 
+/* ===== quiz page ===== */
+.quiz-panel{ max-width: 560px; text-align: left; }
+.quiz-panel .title{ text-align: center; }
+.quiz-panel .sub{ text-align: center; }
+
+.quiz-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 9px;
+  border-top: 2px dashed var(--stone-dark);
+  border-bottom: 2px dashed var(--stone-dark);
+  padding: 12px 0;
+  margin-top: 10px;
+}
+.quiz-meta label{ display: flex; flex-direction: column; gap: 6px; flex: 1 1 140px; }
+.quiz-meta-input{
+  font-family: inherit;
+  font-size: 9px;
+  padding: 6px 8px;
+  background: #101012;
+  border: 2px solid #000;
+  color: var(--text);
+}
+.quiz-score{ color: var(--gold); flex: 0 0 auto; }
+
+.quiz-question{ margin: 18px 0; }
+.quiz-q-text{ font-size: 10px; margin: 0 0 10px; line-height: 1.8; color: var(--diamond); }
+
+.quiz-option{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  margin-bottom: 6px;
+  background: rgba(0,0,0,0.25);
+  border: 2px solid var(--stone-dark);
+  font-size: 10px;
+  cursor: pointer;
+}
+.quiz-option input{ accent-color: var(--diamond); width: 14px; height: 14px; flex: 0 0 auto; }
+.quiz-option:has(input:checked){
+  border-color: var(--diamond);
+  background: rgba(79, 214, 232, 0.12);
+}
+
 @media (max-width: 420px){
   .title{ font-size: 16px; }
   body{ font-size: 11px; }

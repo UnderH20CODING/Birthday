@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final Trial</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%233a7d1f%22/><rect x=%222%22 y=%222%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/><rect x=%2210%22 y=%2210%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+</head>
+<body>
+
+<div class="sky"></div>
+
+<main id="screen-landing" class="screen active">
+  <div class="panel quiz-panel">
+    <h1 class="title small">MULTIPLE CHOICE<br>ASSESSMENT</h1>
+    <p class="sub">Subject: The Legend of underh2o</p>
+
+    <div class="quiz-meta">
+      <label>Student Name <input type="text" class="quiz-meta-input" placeholder="(optional)"></label>
+      <label>Date <input type="text" class="quiz-meta-input" placeholder="(optional)"></label>
+      <span class="quiz-score">Score: <span id="score-display">?</span> / 6</span>
+    </div>
+
+    <p class="puzzle-text" style="margin-top:14px;">Read each question carefully and select the single best answer. Get all 6 right to proceed — miss any and the quiz resets.</p>
+
+    <form id="quiz-form">
+      <div class="quiz-question">
+        <p class="quiz-q-text">1. What is his race?</p>
+        <label class="quiz-option"><input type="radio" name="q1" value="A"><span>A. All of the above</span></label>
+        <label class="quiz-option"><input type="radio" name="q1" value="B"><span>B. He Won dat Race</span></label>
+        <label class="quiz-option"><input type="radio" name="q1" value="C"><span>C. Hindi</span></label>
+        <label class="quiz-option"><input type="radio" name="q1" value="D"><span>D. Japanese</span></label>
+      </div>
+
+      <div class="quiz-question">
+        <p class="quiz-q-text">2. Which letter is correct?</p>
+        <label class="quiz-option"><input type="radio" name="q2" value="A"><span>A. B</span></label>
+        <label class="quiz-option"><input type="radio" name="q2" value="B"><span>B. C</span></label>
+        <label class="quiz-option"><input type="radio" name="q2" value="C"><span>C. A</span></label>
+        <label class="quiz-option"><input type="radio" name="q2" value="D"><span>D. D</span></label>
+      </div>
+
+      <div class="quiz-question">
+        <p class="quiz-q-text">3. How long did it take you to get here?</p>
+        <label class="quiz-option"><input type="radio" name="q3" value="A"><span>A. 10 minutes</span></label>
+        <label class="quiz-option"><input type="radio" name="q3" value="B"><span>B. 20 minutes</span></label>
+        <label class="quiz-option"><input type="radio" name="q3" value="C"><span>C. 30 minutes</span></label>
+        <label class="quiz-option"><input type="radio" name="q3" value="D"><span>D. brah</span></label>
+      </div>
+
+      <div class="quiz-question">
+        <p class="quiz-q-text">4. If John had five apples in a basket and added 2&times;0 apples to it, how many baskets did he have?</p>
+        <label class="quiz-option"><input type="radio" name="q4" value="A"><span>A. 4 Bapples</span></label>
+        <label class="quiz-option"><input type="radio" name="q4" value="B"><span>B. 2 Gaskets</span></label>
+        <label class="quiz-option"><input type="radio" name="q4" value="C"><span>C. Gaster</span></label>
+        <label class="quiz-option"><input type="radio" name="q4" value="D"><span>D. 1</span></label>
+      </div>
+
+      <div class="quiz-question">
+        <p class="quiz-q-text">5. Does he have an aura?</p>
+        <label class="quiz-option"><input type="radio" name="q5" value="A"><span>A. No</span></label>
+        <label class="quiz-option"><input type="radio" name="q5" value="B"><span>B. Yes</span></label>
+        <label class="quiz-option"><input type="radio" name="q5" value="C"><span>C. Maybe no</span></label>
+        <label class="quiz-option"><input type="radio" name="q5" value="D"><span>D. Maybe yes</span></label>
+      </div>
+
+      <div class="quiz-question">
+        <p class="quiz-q-text">6. What's the phrase he's been spamming for a month?</p>
+        <label class="quiz-option"><input type="radio" name="q6" value="A"><span>A. Diddle</span></label>
+        <label class="quiz-option"><input type="radio" name="q6" value="B"><span>B. aBoy</span></label>
+        <label class="quiz-option"><input type="radio" name="q6" value="C"><span>C. Jajajajaja</span></label>
+        <label class="quiz-option"><input type="radio" name="q6" value="D"><span>D. eh sugoi</span></label>
+      </div>
+
+      <button type="submit" id="quiz-submit" class="mc-btn mc-btn-green" style="margin-top:18px;">TURN IN QUIZ</button>
+    </form>
+
+    <p id="feedback" class="feedback" aria-live="polite"></p>
+
+    <a href="achievement.html" class="skip-link">&larr; Back to the previous signal</a>
+  </div>
+</main>
+
+<script src="quiz.js"></script>
+</body>
+</html>
