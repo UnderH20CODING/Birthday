@@ -1,10 +1,11 @@
 # Seth's Birthday Scavenger Hunt Invite 🟩⛏️
 
-A Minecraft-PvP-themed birthday invite. It's 7 static files —
-`index.html`, `spawn.html`, `achievement.html`, `style.css`, `script.js`,
-`spawn.js`, `achievement.js`, `config.js` — no build step, no server.
+A Minecraft-PvP-themed birthday invite. It's 9 static files —
+`index.html`, `spawn.html`, `achievement.html`, `quiz.html`, `style.css`,
+`script.js`, `spawn.js`, `achievement.js`, `quiz.js`, `config.js` — no
+build step, no server.
 
-## How the hunt works (2 stops)
+## How the hunt works (2 hidden stops + a final quiz)
 
 **Stop 0 — you text the group chat.** You send the first clue yourself,
 however you want. Something like:
@@ -21,12 +22,19 @@ signal" button to the next page — no code yet.
 **Stop 2 — `achievement.html`.** A second secret page, styled like a
 locked Minecraft achievement. It asks for the date "this legend respawns
 every year" — your birthday (accepts `October 3`, `Oct 3`, `10/3`, etc.).
-Solving it finally reveals the code and a button back to the main site.
+Solving it finally reveals the code and a button to go type it in.
 
-**`index.html`** takes that code, plays the chest-opening animation, and
-shows the invite. It also has a **"skip the hunt"** link straight to the
-invite for anyone who doesn't want to bother, and a **"lost your clue"**
-link that drops people back at `spawn.html` (stop 1) as a fallback.
+**`index.html`** is where that code actually gets typed in (on purpose —
+it's not auto-filled). Getting it right sends them to **`quiz.html`**,
+a 6-question multiple-choice final trial. A perfect 6/6 sends them back
+to `index.html`, which then plays the chest-opening animation and shows
+the invite. Any wrong answer resets just the quiz (not the earlier
+stops) so they can retry.
+
+`index.html` also has a **"skip the hunt"** link straight to the invite
+(bypasses everything, including the quiz) for anyone who doesn't want to
+bother, and a **"lost your clue"** link that drops people back at
+`spawn.html` (stop 1) as a fallback.
 
 You can make the chain feel even more "scattered across the web" by
 posting the `spawn.html` link through a link shortener, or via Instagram/
@@ -48,9 +56,13 @@ in `#detail-location`.
 
 In `config.js`:
 
-- `SHARED_CODE` — the code that unlocks the invite (default `PVP18`)
-- `SPAWN_ANSWER` — answer to the spawn-page challenge (default `LT3`)
+- `SHARED_CODE` — the code that leads to the quiz (default `PVP18`)
 - `RSVP_HREF` — where "RSVP NOW" links to (`mailto:`, `tel:`, or a form URL)
+
+The spawn-page rank answer (`LT3`) lives in `spawn.js`, the achievement
+birthday answer in `achievement.js`, and the quiz answer key in
+`quiz.js` (`ANSWER_KEY`) — edit those directly if you want to change any
+of them.
 
 ## Optional: inside joke / close-friend fact
 
