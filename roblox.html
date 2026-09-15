@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Old Save File Found</title>
+<title>Archive Access</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%233a7d1f%22/><rect x=%222%22 y=%222%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/><rect x=%2210%22 y=%2210%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,35 +17,30 @@
 
 <main id="screen-landing" class="screen active">
   <div class="panel">
-    <p class="terminal-line">&gt; scanning archived accounts...</p>
-    <p class="terminal-line">&gt; FOUND: <span class="hl">Sethgamer357</span> <span class="dim">(retired)</span></p>
-    <p class="terminal-line">&gt; linked to current tag: <span class="hl">underh2o</span></p>
+    <p class="terminal-line">&gt; connecting to roblox.com...</p>
+    <p class="terminal-line">&gt; USER: <span class="hl">Sethgamer357</span></p>
+    <p class="terminal-line">&gt; loading favorites list...</p>
 
-    <h1 class="title small" style="margin-top:20px;">QUESTION ONE</h1>
-    <p class="sub">What's underh2o's sword PvP rank?</p>
+    <h1 class="title small" style="margin-top:20px;">QUESTION TWO</h1>
+    <p class="sub">Find Sethgamer357's Roblox favorites.<br>What's the FIRST game listed?</p>
 
     <div class="code-box">
       <div class="input-row">
-        <input id="rank-input" class="code-input small" type="text" autocomplete="off" spellcheck="false" placeholder="rank">
-        <button id="rank-submit" class="mc-btn mc-btn-blue">SOLVE</button>
+        <input id="game-input" class="code-input small" type="text" autocomplete="off" spellcheck="false" placeholder="game name">
+        <button id="game-submit" class="mc-btn mc-btn-blue">SOLVE</button>
       </div>
       <p id="feedback" class="feedback" aria-live="polite"></p>
     </div>
 
     <div id="unlock-box" class="puzzle-box hidden">
       <p class="puzzle-text">Access granted.</p>
-      <!-- OPTIONAL: uncomment and fill in your own inside joke / close-friend
-           fact below if you want one more personal touch here. Leave it out
-           if you'd rather not.
-      <p class="puzzle-text">[EDIT ME: inside joke or close-friend fact]</p>
-      -->
-      <a id="next-link" href="roblox.html" class="mc-btn mc-btn-green" style="text-decoration:none; display:inline-block;">NEXT QUESTION</a>
+      <a id="next-link" href="channel.html" class="mc-btn mc-btn-green" style="text-decoration:none; display:inline-block;">NEXT QUESTION</a>
     </div>
 
-    <a href="index.html" class="skip-link">&larr; Back to the challenge</a>
+    <a href="spawn.html" class="skip-link">&larr; Back to the previous question</a>
   </div>
 </main>
 
-<script src="spawn.js"></script>
+<script src="roblox.js"></script>
 </body>
 </html>
