@@ -32,7 +32,7 @@ function handleSubmit() {
     $("code-reveal").textContent = CONFIG.SHARED_CODE;
     $("unlock-box").classList.remove("hidden");
   } else {
-    feedback.textContent = "Not synced yet. Try again.";
+    feedback.textContent = "Try again.";
     feedback.className = "feedback bad";
   }
 }

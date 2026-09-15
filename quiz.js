@@ -25,11 +25,16 @@ function handleSubmit() {
 
   let score = 0;
   let allAnswered = true;
+  const wrongQuestions = [];
 
   for (const [question, correct] of Object.entries(ANSWER_KEY)) {
     const given = data.get(question);
     if (!given) allAnswered = false;
-    if (given === correct) score++;
+    if (given === correct) {
+      score++;
+    } else {
+      wrongQuestions.push(question.replace("q", ""));
+    }
   }
 
   $("score-display").textContent = score;
@@ -41,18 +46,19 @@ function handleSubmit() {
   }
 
   if (score === 6) {
-    feedback.textContent = "6/6 — perfect score! Unlocking...";
+    feedback.textContent = "6/6, perfect score! Unlocking...";
     feedback.className = "feedback good";
     setTimeout(() => {
       window.location.href = "index.html?quizpassed=1";
     }, 800);
   } else {
-    feedback.textContent = `${score}/6 — not quite. Resetting the quiz...`;
+    const missed = wrongQuestions.length === 1 ? "question" : "questions";
+    feedback.textContent = `${score}/6. You got ${missed} ${wrongQuestions.join(", ")} wrong. Resetting the quiz...`;
     feedback.className = "feedback bad";
     setTimeout(() => {
       form.reset();
       $("score-display").textContent = "?";
       feedback.textContent = "";
-    }, 1400);
+    }, 2500);
   }
 }

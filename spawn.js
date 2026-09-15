@@ -27,7 +27,7 @@ function handleSubmit() {
     feedback.className = "feedback good";
     $("unlock-box").classList.remove("hidden");
   } else {
-    feedback.textContent = "Nope. Ask the boys.";
+    feedback.textContent = "Hint: go to mcpvp.com";
     feedback.className = "feedback bad";
   }
 }

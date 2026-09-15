@@ -318,21 +318,12 @@ body{
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 9px;
   border-top: 2px dashed var(--stone-dark);
   border-bottom: 2px dashed var(--stone-dark);
   padding: 12px 0;
   margin-top: 10px;
-}
-.quiz-meta label{ display: flex; flex-direction: column; gap: 6px; flex: 1 1 140px; }
-.quiz-meta-input{
-  font-family: inherit;
-  font-size: 9px;
-  padding: 6px 8px;
-  background: #101012;
-  border: 2px solid #000;
-  color: var(--text);
 }
 .quiz-score{ color: var(--gold); flex: 0 0 auto; }
 
