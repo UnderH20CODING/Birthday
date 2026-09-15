@@ -76,6 +76,3 @@ $("skip-link").addEventListener("click", (e) => {
   e.preventDefault();
   playChestThenReveal();
 });
-
-/* ---------- RSVP button target ---------- */
-$("rsvp-btn").href = CONFIG.RSVP_HREF;

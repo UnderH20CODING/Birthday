@@ -308,14 +308,6 @@ body{
 .invite-value{ font-size: 10px; line-height: 1.8; }
 .invite-value em{ color: var(--gold); font-style: normal; opacity: 0.9; }
 
-.rsvp-btn{
-  display: block;
-  margin: 24px auto 0;
-  width: fit-content;
-  text-decoration: none;
-  text-align: center;
-}
-
 /* ===== quiz page ===== */
 .quiz-panel{ max-width: 560px; text-align: left; }
 .quiz-panel .title{ text-align: center; }
