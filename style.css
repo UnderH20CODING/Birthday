@@ -347,6 +347,34 @@ body{
   background: rgba(79, 214, 232, 0.12);
 }
 
+/* ===== boss fight page ===== */
+.battle-ui{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0 10px;
+}
+.boss-name{ color: var(--redstone); font-size: 11px; }
+
+.battle-box-wrap{
+  display: flex;
+  justify-content: center;
+  margin: 4px 0;
+}
+#battle-canvas{
+  background: #000;
+  touch-action: none;
+  max-width: 100%;
+  cursor: none;
+}
+
+.you-died{
+  color: var(--redstone);
+  font-size: 16px;
+  text-align: center;
+  text-shadow: 2px 2px 0 #000;
+}
+
 @media (max-width: 420px){
   .title{ font-size: 16px; }
   body{ font-size: 11px; }

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encounter</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%23000%22/><rect x=%226%22 y=%222%22 width=%224%22 height=%224%22 fill=%22%23ff2d2d%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+</head>
+<body>
+
+<div class="sky"></div>
+
+<main id="screen-landing" class="screen active">
+  <div class="panel boss-panel">
+    <h1 class="title small">QUESTION FOUR</h1>
+    <p class="sub">* SETH is blocking the way.</p>
+
+    <div class="battle-ui">
+      <span class="boss-name">SETH</span>
+      <div class="hearts" id="hearts" aria-hidden="true">
+        <span class="heart">&#10084;</span><span class="heart">&#10084;</span><span class="heart">&#10084;</span>
+      </div>
+    </div>
+
+    <div class="battle-box-wrap">
+      <canvas id="battle-canvas" width="300" height="180"></canvas>
+    </div>
+
+    <p id="battle-status" class="feedback">Move your mouse (or press and hold on mobile) to dodge.</p>
+
+    <div id="death-box" class="puzzle-box hidden">
+      <p class="puzzle-text you-died">YOU DIED</p>
+      <button id="retry-btn" class="mc-btn mc-btn-blue">RETRY</button>
+    </div>
+
+    <div id="unlock-box" class="puzzle-box hidden">
+      <p class="puzzle-text">* You survived. SETH lets you through.</p>
+      <a id="next-link" href="achievement.html" class="mc-btn mc-btn-green" style="text-decoration:none; display:inline-block;">NEXT QUESTION</a>
+    </div>
+
+    <a href="channel.html" class="skip-link">&larr; Back to the previous question</a>
+  </div>
+</main>
+
+<script src="boss.js"></script>
+</body>
+</html>

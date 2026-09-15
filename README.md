@@ -10,18 +10,28 @@ however you want (text, group chat, Instagram, whatever). It should
 link to `spawn.html`, which isn't linked from the homepage — it only
 exists for people who got your link.
 
-Then it's four questions, each on its own hidden page, each requiring
-guests to leave the site to find the answer:
+Then it's three off-site lookup questions, followed by an on-site boss
+fight, each on its own hidden page:
 
 | Page | Question | Answer comes from |
 |---|---|---|
 | `spawn.html` (Q1) | underh2o's sword PvP rank | mcpvp.com |
 | `roblox.html` (Q2) | First game in Sethgamer357's Roblox favorites | roblox.com |
 | `channel.html` (Q3) | Who Judelow is joke-shipped with | YouTube / searching "Judelow" |
-| `radio.html` (Q4) | The producer who says his name in the INDUSTRY BABY intro | listening to the song |
+| `boss.html` (Q4) | Survive a dodge fight against a pixel "SETH" | playing the minigame itself |
 
-Each page has a wrong-answer hint pointing them to the right site, and
+Q1-Q3 each have a wrong-answer hint pointing them to the right site, and
 a "NEXT QUESTION" button that only appears once they're right.
+
+**`boss.html`** is a small Undertale-style bullet-dodge minigame built
+on a `<canvas>`: a red heart soul (controlled by mouse on desktop, or by
+press-and-hold-and-drag on touch devices, since there's no hover on
+mobile) has to dodge a blocky pixel "SETH" sprite's kick attacks for 25
+seconds with 3 HP. Difficulty ramps up over that time. Losing all HP
+shows a "YOU DIED" screen with a retry button that just resets the
+fight; surviving unlocks the "NEXT QUESTION" button. Tweak `DURATION_MS`,
+`MAX_HP`, or the speed/spawn-rate constants at the top of `boss.js` to
+retune difficulty.
 
 **`achievement.html`** comes after Q4 — styled like a locked Minecraft
 achievement, it asks for the date "this legend respawns every year" (your
@@ -45,7 +55,7 @@ Each stop's answer key and hint text lives in that page's own `.js` file:
 - `spawn.js` — rank answer (`LT3`)
 - `roblox.js` — Roblox game answer (`Slap Battles`)
 - `channel.js` — ship answer (`Sharpness`)
-- `radio.js` — producer answer (`Daytrip`)
+- `boss.js` — the dodge-fight minigame (no answer key, just survive)
 - `achievement.js` — birthday answer (`October 3`)
 - `quiz.js` — the 6-question `ANSWER_KEY`
 
