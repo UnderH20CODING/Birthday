@@ -1,26 +1,5 @@
-/* =========================================================
-   EDIT ME: party config
-   Change these values, then commit + push. Nothing else in
-   this file needs to change for basic edits.
-   ========================================================= */
-const CONFIG = {
-  // The code you send your friends as clues. Not case sensitive.
-  SHARED_CODE: "PVP18",
-
-  // Answer to the on-site backup puzzle riddle. Not case sensitive.
-  // TODO: waiting on real riddle content.
-  PUZZLE_ANSWER: "TBD",
-
-  // Shown once someone solves the backup puzzle, telling them the real code.
-  puzzleHintText() {
-    return `Correct! The code is: ${CONFIG.SHARED_CODE}`;
-  },
-
-  // RSVP button target: a mailto:, tel:, form link, or Google Form URL.
-  RSVP_HREF: "mailto:flatterfight332@gmail.com?subject=I'm%20in%20for%20the%20PvP%20Birthday!",
-};
-
-/* ========================================================= */
+/* index.html logic — code entry, skip link, chest reveal.
+   Party/hunt values live in config.js (loaded before this file). */
 
 const $ = (id) => document.getElementById(id);
 
@@ -84,29 +63,13 @@ function handleCodeSubmit() {
   }
 }
 
-/* ---------- backup puzzle ---------- */
-$("puzzle-toggle").addEventListener("click", () => {
-  $("puzzle-box").classList.toggle("hidden");
-});
-
-$("puzzle-submit").addEventListener("click", handlePuzzleSubmit);
-$("puzzle-input").addEventListener("keydown", (e) => {
-  if (e.key === "Enter") handlePuzzleSubmit();
-});
-
-function handlePuzzleSubmit() {
-  const val = $("puzzle-input").value;
-  const feedback = $("puzzle-feedback");
-
-  if (normalize(val) === normalize(CONFIG.PUZZLE_ANSWER)) {
-    feedback.textContent = CONFIG.puzzleHintText();
-    feedback.className = "feedback good";
+/* ---------- prefill code if arriving from spawn.html ---------- */
+(function prefillFromSpawn() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("unlocked") === "1") {
     $("code-input").value = CONFIG.SHARED_CODE;
-  } else {
-    feedback.textContent = "Not quite. Look closer.";
-    feedback.className = "feedback bad";
   }
-}
+})();
 
 /* ---------- skip straight to invite ---------- */
 $("skip-link").addEventListener("click", (e) => {

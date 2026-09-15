@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
 </head>
 <body>
 
@@ -33,18 +34,7 @@
       <span class="heart">&#10084;</span><span class="heart">&#10084;</span><span class="heart">&#10084;</span>
     </div>
 
-    <button id="puzzle-toggle" class="link-btn">Lost your clue? Try the backup puzzle &#9660;</button>
-
-    <div id="puzzle-box" class="puzzle-box hidden">
-      <p class="puzzle-text" id="puzzle-question">
-        <em>[EDIT ME: riddle text goes here]</em>
-      </p>
-      <div class="input-row">
-        <input id="puzzle-input" class="code-input small" type="text" autocomplete="off" spellcheck="false" placeholder="hidden name">
-        <button id="puzzle-submit" class="mc-btn mc-btn-blue">SOLVE</button>
-      </div>
-      <p id="puzzle-feedback" class="feedback" aria-live="polite"></p>
-    </div>
+    <a href="spawn.html" class="link-btn" style="text-decoration:none; display:block;">Lost your clue? Find it here &rarr;</a>
 
     <a href="#" id="skip-link" class="skip-link">Already know the vibe? Skip the hunt &rarr;</a>
   </div>

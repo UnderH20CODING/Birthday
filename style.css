@@ -175,6 +175,16 @@ body{
   text-decoration: underline;
 }
 
+.terminal-line{
+  text-align: left;
+  font-size: 10px;
+  color: #8fef8f;
+  margin: 0 0 8px;
+  opacity: 0.9;
+}
+.terminal-line .hl{ color: var(--gold); }
+.terminal-line .dim{ color: var(--stone); }
+
 .puzzle-box{
   margin-top: 14px;
   padding: 14px;
