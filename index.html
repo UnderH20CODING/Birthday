@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Challenge Has Spawned</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%233a7d1f%22/><rect x=%222%22 y=%222%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/><rect x=%2210%22 y=%2210%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="sky"></div>
+
+<!-- ================= LANDING / CODE ENTRY ================= -->
+<main id="screen-landing" class="screen active">
+  <div class="panel">
+    <h1 class="title">A CHALLENGE<br>HAS SPAWNED</h1>
+    <p class="sub">Something is waiting for you.<br>You know the drill, PvP legend.</p>
+
+    <div class="code-box">
+      <label for="code-input" class="code-label">ENTER THE CODE</label>
+      <div class="input-row">
+        <input id="code-input" class="code-input" type="text" autocomplete="off" spellcheck="false" placeholder="?????" maxlength="24">
+        <button id="submit-btn" class="mc-btn mc-btn-green">UNLOCK</button>
+      </div>
+      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="hearts" id="hearts" aria-hidden="true">
+      <span class="heart">&#10084;</span><span class="heart">&#10084;</span><span class="heart">&#10084;</span>
+    </div>
+
+    <button id="puzzle-toggle" class="link-btn">Lost your clue? Try the backup puzzle &#9660;</button>
+
+    <div id="puzzle-box" class="puzzle-box hidden">
+      <p class="puzzle-text" id="puzzle-question">
+        <em>[EDIT ME: riddle text goes here]</em>
+      </p>
+      <div class="input-row">
+        <input id="puzzle-input" class="code-input small" type="text" autocomplete="off" spellcheck="false" placeholder="hidden name">
+        <button id="puzzle-submit" class="mc-btn mc-btn-blue">SOLVE</button>
+      </div>
+      <p id="puzzle-feedback" class="feedback" aria-live="polite"></p>
+    </div>
+
+    <a href="#" id="skip-link" class="skip-link">Already know the vibe? Skip the hunt &rarr;</a>
+  </div>
+</main>
+
+<!-- ================= CHEST OPEN TRANSITION ================= -->
+<div id="screen-chest" class="screen chest-screen">
+  <div class="chest">
+    <div class="chest-lid"></div>
+    <div class="chest-body"></div>
+    <div class="chest-glow"></div>
+  </div>
+  <p class="chest-text">OPENING...</p>
+</div>
+
+<!-- ================= FINAL REVEAL ================= -->
+<main id="screen-reveal" class="screen reveal-screen">
+  <div class="panel reveal-panel">
+    <div class="achievement" id="achievement">
+      <span class="achievement-icon">&#9733;</span>
+      <div>
+        <div class="achievement-title">Achievement Unlocked</div>
+        <div class="achievement-sub">Level Up: 18</div>
+      </div>
+    </div>
+
+    <h1 class="title small">YOU'RE INVITED</h1>
+    <p class="sub">Seth's Birthday &mdash; Minecraft PvP Edition</p>
+
+    <div class="invite-grid">
+      <div class="invite-item">
+        <div class="invite-label">&#128197; DATE &amp; TIME</div>
+        <div class="invite-value" id="detail-datetime">October 3 &middot; <em>[EDIT ME: time]</em></div>
+      </div>
+      <div class="invite-item">
+        <div class="invite-label">&#128205; LOCATION</div>
+        <div class="invite-value" id="detail-location"><em>[EDIT ME: address / place]</em></div>
+      </div>
+      <div class="invite-item">
+        <div class="invite-label">&#9876;&#65039; WHAT TO BRING</div>
+        <div class="invite-value" id="detail-bring"><em>[EDIT ME: gear / dress code / "just bring your PvP skills"]</em></div>
+      </div>
+      <div class="invite-item">
+        <div class="invite-label">&#9993;&#65039; RSVP</div>
+        <div class="invite-value" id="detail-rsvp"><em>[EDIT ME: RSVP link or "text me back"]</em></div>
+      </div>
+    </div>
+
+    <a id="rsvp-btn" class="mc-btn mc-btn-green rsvp-btn" href="#">RSVP NOW</a>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
