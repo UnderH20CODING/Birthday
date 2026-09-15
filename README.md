@@ -1,30 +1,37 @@
 # Seth's Birthday Scavenger Hunt Invite 🟩⛏️
 
-A Minecraft-PvP-themed birthday invite. It's 5 static files —
-`index.html`, `spawn.html`, `style.css`, `script.js`, `spawn.js`,
-`config.js` — no build step, no server.
+A Minecraft-PvP-themed birthday invite. It's 7 static files —
+`index.html`, `spawn.html`, `achievement.html`, `style.css`, `script.js`,
+`spawn.js`, `achievement.js`, `config.js` — no build step, no server.
 
-## How the hunt works
+## How the hunt works (2 stops)
 
-1. **You send the actual clues** — text, group chat, Instagram story, a
-   printed note, whatever platforms you want. This is the "around the web"
-   part; the site is just where it lands.
-2. Somewhere in that chain, you drop the link to **`spawn.html`** — a
-   secret page that isn't linked from the homepage, so it only exists for
-   people who followed your clues. It's themed around your old Roblox tag
-   (`Sethgamer357`) and asks for your sword PvP rank (`LT3`) to prove
-   whoever's there actually knows you.
-3. Solving `spawn.html` reveals the code and a button back to the main
-   site (`index.html`), which plays the chest-opening animation and shows
-   the invite.
-4. `index.html` also has a **"skip the hunt"** link for anyone who just
-   wants the invite straight up, and a **"lost your clue"** link that
-   points to `spawn.html` as a fallback.
+**Stop 0 — you text the group chat.** You send the first clue yourself,
+however you want. Something like:
 
-Since it's just one extra page, you can make it feel more "scattered
-across the web" by posting the `spawn.html` link through a link shortener,
-or burying it in an Instagram bio / story / Discord pin instead of texting
-it directly — up to you.
+> "yo. before you can pull up you gotta prove you know me.
+> [link to spawn.html]"
+
+**Stop 1 — `spawn.html`.** A secret page not linked from the homepage —
+only exists for people who got the link. Themed around your old Roblox
+tag (`Sethgamer357`), it asks for your sword PvP rank (`LT3`) to prove
+whoever's there actually knows you. Solving it unlocks a "follow the
+signal" button to the next page — no code yet.
+
+**Stop 2 — `achievement.html`.** A second secret page, styled like a
+locked Minecraft achievement. It asks for the date "this legend respawns
+every year" — your birthday (accepts `October 3`, `Oct 3`, `10/3`, etc.).
+Solving it finally reveals the code and a button back to the main site.
+
+**`index.html`** takes that code, plays the chest-opening animation, and
+shows the invite. It also has a **"skip the hunt"** link straight to the
+invite for anyone who doesn't want to bother, and a **"lost your clue"**
+link that drops people back at `spawn.html` (stop 1) as a fallback.
+
+You can make the chain feel even more "scattered across the web" by
+posting the `spawn.html` link through a link shortener, or via Instagram/
+Discord instead of texting it directly — the pages don't care how someone
+arrives, only that they do.
 
 ## 1. Edit your party details
 

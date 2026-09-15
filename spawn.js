@@ -25,8 +25,6 @@ function handleSubmit() {
   if (isCorrectRank(val)) {
     feedback.textContent = "Correct! You really do know him.";
     feedback.className = "feedback good";
-    $("code-reveal").textContent = CONFIG.SHARED_CODE;
-    $("return-link").href = "index.html?unlocked=1";
     $("unlock-box").classList.remove("hidden");
   } else {
     feedback.textContent = "Nope. Ask the boys.";

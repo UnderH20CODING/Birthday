@@ -285,6 +285,10 @@ body{
 .achievement-title{ color: var(--gold); font-size: 10px; }
 .achievement-sub{ color: var(--text); font-size: 9px; opacity: 0.8; margin-top: 4px; }
 
+.achievement.locked{ border-color: var(--stone); }
+.achievement.locked .achievement-icon{ color: var(--stone); }
+.achievement.locked .achievement-title{ color: var(--stone); }
+
 .invite-grid{
   display: grid;
   gap: 14px;
