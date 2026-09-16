@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Archive Access</title>
+<title>Block Stack</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%233a7d1f%22/><rect x=%222%22 y=%222%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/><rect x=%2210%22 y=%2210%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,18 +17,30 @@
 
 <main id="screen-landing" class="screen active">
   <div class="panel">
-    <p class="terminal-line">&gt; pulling up an old profile...</p>
-    <p class="terminal-line">&gt; STATUS: retired, but not forgotten</p>
+    <h1 class="title small">QUESTION TWO</h1>
+    <p class="sub">Clear 3 lines to pass.</p>
 
-    <h1 class="title small" style="margin-top:20px;">QUESTION TWO</h1>
-    <p class="sub">That Roblox account may be retired, but it never unfavorited anything.<br>Whatever's still sitting on top of the list is your answer.</p>
+    <div class="battle-ui">
+      <span class="boss-name">STACK</span>
+      <span class="quiz-score">Lines: <span id="lines-display">0</span> / 3</span>
+    </div>
 
-    <div class="code-box">
-      <div class="input-row">
-        <input id="game-input" class="code-input small" type="text" autocomplete="off" spellcheck="false" placeholder="game name">
-        <button id="game-submit" class="mc-btn mc-btn-blue">SOLVE</button>
-      </div>
-      <p id="feedback" class="feedback" aria-live="polite"></p>
+    <div class="battle-box-wrap">
+      <canvas id="tetris-canvas" width="180" height="288"></canvas>
+    </div>
+
+    <div class="tetris-controls">
+      <button id="btn-left" class="mc-btn mc-btn-blue">&#8592;</button>
+      <button id="btn-rotate" class="mc-btn mc-btn-blue">&#8635;</button>
+      <button id="btn-down" class="mc-btn mc-btn-blue">&#8595;</button>
+      <button id="btn-right" class="mc-btn mc-btn-blue">&#8594;</button>
+    </div>
+
+    <p id="battle-status" class="feedback">Arrow keys or the buttons above. Space to hard-drop.</p>
+
+    <div id="death-box" class="puzzle-box hidden">
+      <p class="puzzle-text you-died">TOPPED OUT</p>
+      <button id="retry-btn" class="mc-btn mc-btn-blue">RETRY</button>
     </div>
 
     <div id="unlock-box" class="puzzle-box hidden">

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Old Save File Found</title>
+<title>Rescue Run</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%233a7d1f%22/><rect x=%222%22 y=%222%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/><rect x=%2210%22 y=%2210%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,28 +17,29 @@
 
 <main id="screen-landing" class="screen active">
   <div class="panel">
-    <p class="terminal-line">&gt; scanning archived accounts...</p>
-    <p class="terminal-line">&gt; FOUND: <span class="hl">Sethgamer357</span> <span class="dim">(retired)</span></p>
-    <p class="terminal-line">&gt; linked to current tag: <span class="hl">underh2o</span></p>
+    <h1 class="title small">QUESTION ONE</h1>
+    <p class="sub" id="game-sub">Someone needs saving. Run the course before it's too late.</p>
 
-    <h1 class="title small" style="margin-top:20px;">QUESTION ONE</h1>
-    <p class="sub">Every sword duelist carries a title: one letter, one number, earned in the arena.<br>What's underh2o's?</p>
-
-    <div class="code-box">
-      <div class="input-row">
-        <input id="rank-input" class="code-input small" type="text" autocomplete="off" spellcheck="false" placeholder="rank">
-        <button id="rank-submit" class="mc-btn mc-btn-blue">SOLVE</button>
+    <div class="battle-ui">
+      <span class="boss-name">RUN</span>
+      <div class="hearts" id="hearts" aria-hidden="true">
+        <span class="heart">&#10084;</span><span class="heart">&#10084;</span><span class="heart">&#10084;</span>
       </div>
-      <p id="feedback" class="feedback" aria-live="polite"></p>
+    </div>
+
+    <div class="battle-box-wrap">
+      <canvas id="runner-canvas" width="300" height="180"></canvas>
+    </div>
+
+    <p id="battle-status" class="feedback">Press SPACE, click, or tap to jump.</p>
+
+    <div id="death-box" class="puzzle-box hidden">
+      <p class="puzzle-text you-died">YOU DIED</p>
+      <button id="retry-btn" class="mc-btn mc-btn-blue">RETRY</button>
     </div>
 
     <div id="unlock-box" class="puzzle-box hidden">
-      <p class="puzzle-text">Access granted.</p>
-      <!-- OPTIONAL: uncomment and fill in your own inside joke / close-friend
-           fact below if you want one more personal touch here. Leave it out
-           if you'd rather not.
-      <p class="puzzle-text">[EDIT ME: inside joke or close-friend fact]</p>
-      -->
+      <p class="puzzle-text">You made it. She's safe.</p>
       <a id="next-link" href="roblox.html" class="mc-btn mc-btn-green" style="text-decoration:none; display:inline-block;">NEXT QUESTION</a>
     </div>
 

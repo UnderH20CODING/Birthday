@@ -361,11 +361,22 @@ body{
   justify-content: center;
   margin: 4px 0;
 }
-#battle-canvas{
+#battle-canvas, #runner-canvas, #tetris-canvas, #stack-canvas{
   background: #000;
   touch-action: none;
   max-width: 100%;
   cursor: none;
+}
+
+.tetris-controls{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px 0 4px;
+}
+.tetris-controls .mc-btn{
+  padding: 10px 14px;
+  font-size: 14px;
 }
 
 .you-died{

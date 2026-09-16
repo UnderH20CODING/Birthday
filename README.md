@@ -10,28 +10,19 @@ however you want (text, group chat, Instagram, whatever). It should
 link to `spawn.html`, which isn't linked from the homepage — it only
 exists for people who got your link.
 
-Then it's three off-site lookup questions, followed by an on-site boss
-fight, each on its own hidden page:
+Then it's four minigames in a row, each its own hidden page, each on a
+`<canvas>` with no build step:
 
-| Page | Question | Answer comes from |
+| Page | Game | To pass |
 |---|---|---|
-| `spawn.html` (Q1) | underh2o's sword PvP rank | mcpvp.com |
-| `roblox.html` (Q2) | First game in Sethgamer357's Roblox favorites | roblox.com |
-| `channel.html` (Q3) | Who Judelow is joke-shipped with | YouTube / searching "Judelow" |
-| `boss.html` (Q4) | Survive a dodge fight against a pixel "SETH" | playing the minigame itself |
+| `spawn.html` (Q1) | Green-Hill-Zone-style side-scroller. Intro: a big man carries her to the end of the course; then you run/jump the obstacle course chasing them. | Survive the full run with 3 HP (jump = Space/click/tap) |
+| `roblox.html` (Q2) | Tetris, but every piece is stamped with a letter cycling through S-M-E-G-M-A. | Clear 3 lines (arrows/buttons, Space to hard-drop) |
+| `channel.html` (Q3) | Balance stones: a moving stone slides left-right, drop it to land on the one below; land off-center and it topples (with a spring-damped wobble for the "physics" feel). | Stack 3 stones without one toppling |
+| `boss.html` (Q4) | Undertale-style dodge fight — a red heart soul dodges a blocky pixel "SETH" sprite's kicks. Mouse always drives the heart on desktop; touch only moves it while pressed and dragged, since there's no hover on mobile. | Survive 25 seconds with 3 HP |
 
-Q1-Q3 each have a wrong-answer hint pointing them to the right site, and
-a "NEXT QUESTION" button that only appears once they're right.
-
-**`boss.html`** is a small Undertale-style bullet-dodge minigame built
-on a `<canvas>`: a red heart soul (controlled by mouse on desktop, or by
-press-and-hold-and-drag on touch devices, since there's no hover on
-mobile) has to dodge a blocky pixel "SETH" sprite's kick attacks for 25
-seconds with 3 HP. Difficulty ramps up over that time. Losing all HP
-shows a "YOU DIED" screen with a retry button that just resets the
-fight; surviving unlocks the "NEXT QUESTION" button. Tweak `DURATION_MS`,
-`MAX_HP`, or the speed/spawn-rate constants at the top of `boss.js` to
-retune difficulty.
+Each game shows a "NEXT QUESTION" button only once you've won, and a
+death/topple/game-over screen with a RETRY button that resets just that
+game in place (no page reload) if you lose.
 
 **`achievement.html`** comes after Q4 — styled like a locked Minecraft
 achievement, it asks for the date "this legend respawns every year" (your
@@ -48,26 +39,17 @@ and resets just the quiz (not the earlier stops) so they can retry.
 wants the details without doing the hunt, and a "need a clue" link that
 drops people back at `spawn.html` (Q1) as a fallback entry point.
 
-## Editing answers or hints
+## Tuning each game
 
-Each stop's answer key and hint text lives in that page's own `.js` file:
-
-- `spawn.js` — rank answer (`LT3`)
-- `roblox.js` — Roblox game answer (`Slap Battles`)
-- `channel.js` — ship answer (`Sharpness`)
-- `boss.js` — the dodge-fight minigame (no answer key, just survive)
-- `achievement.js` — birthday answer (`October 3`)
-- `quiz.js` — the 6-question `ANSWER_KEY`
+All the tunable constants (durations, HP, speeds, spawn rates, lines/
+stones needed to win) sit at the top of each page's own `.js` file:
+`spawn.js`, `roblox.js`, `channel.js`, `boss.js`. The birthday answer on
+`achievement.html` lives in `achievement.js`, and the quiz answer key is
+`ANSWER_KEY` in `quiz.js`.
 
 The shared code that gates the quiz lives in `config.js` (`SHARED_CODE`).
 The party details on the final invite (date, location, what to bring,
 RSVP) are directly in `index.html`.
-
-## Optional: inside joke / close-friend fact
-
-In `spawn.html` there's a commented-out spot (search `OPTIONAL`) right
-after Q1 is solved, for one more personal line if you ever want one.
-Totally optional.
 
 ## Preview it locally
 
