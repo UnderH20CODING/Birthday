@@ -54,7 +54,7 @@ function scrollSpeed() {
 
 function spawnInterval() {
   const p = difficultyProgress();
-  return 1100 - p * 500; // 1100ms -> 600ms
+  return 1600 - p * 500; // 1600ms -> 1100ms
 }
 
 function doJump() {
