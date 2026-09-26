@@ -1,4 +1,4 @@
-/* quiz.html logic — the final 6-question multiple choice trial.
+/* quiz.html logic — the final multiple choice trial.
    Party/hunt values live in config.js (loaded before this file). */
 
 const $ = (id) => document.getElementById(id);
@@ -10,7 +10,9 @@ const ANSWER_KEY = {
   q4: "D",
   q5: "B",
   q6: "D",
+  q7: "D",
 };
+const TOTAL_QUESTIONS = Object.keys(ANSWER_KEY).length;
 
 const form = $("quiz-form");
 
@@ -45,15 +47,15 @@ function handleSubmit() {
     return;
   }
 
-  if (score === 6) {
-    feedback.textContent = "6/6, perfect score! Unlocking...";
+  if (score === TOTAL_QUESTIONS) {
+    feedback.textContent = `${score}/${TOTAL_QUESTIONS}, perfect score! Unlocking...`;
     feedback.className = "feedback good";
     setTimeout(() => {
       window.location.href = "index.html?quizpassed=1";
     }, 800);
   } else {
     const missed = wrongQuestions.length === 1 ? "question" : "questions";
-    feedback.textContent = `${score}/6. You got ${missed} ${wrongQuestions.join(", ")} wrong. Resetting the quiz...`;
+    feedback.textContent = `${score}/${TOTAL_QUESTIONS}. You got ${missed} ${wrongQuestions.join(", ")} wrong. Resetting the quiz...`;
     feedback.className = "feedback bad";
     setTimeout(() => {
       form.reset();
