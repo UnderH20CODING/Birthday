@@ -14,7 +14,7 @@ Then it's four questions in a row, each its own hidden page:
 
 | Page | Question/Game | To pass |
 |---|---|---|
-| `spawn.html` (Q1) | underh2o's sword PvP rank (lookup riddle) | Type `LT3` — answer comes from mcpvp.com |
+| `spawn.html` (Q1) | underh20's sword tier (lookup riddle) | Type `LT3` — answer comes from mcpvp.com |
 | `roblox.html` (Q2) | Tetris, but every piece is stamped with a letter cycling through S-M-E-G-M-A. | Clear 3 lines (arrows/buttons, Space to hard-drop) |
 | `channel.html` (Q3) | Balance stones: a moving stone slides left-right, drop it to land on the one below; land off-center and it topples (with a spring-damped wobble for the "physics" feel). | Stack 3 stones without one toppling |
 | `boss.html` (Q4) | Undertale-style dodge fight — a red heart soul dodges a blocky pixel "SETH" sprite's kicks. Mouse always drives the heart on desktop; touch only moves it while pressed and dragged, since there's no hover on mobile. | Survive 25 seconds with 3 HP |
