@@ -3,13 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Balance</title>
+<title>Quick Draw</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><rect width=%2216%22 height=%2216%22 fill=%22%233a7d1f%22/><rect x=%222%22 y=%222%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/><rect x=%2210%22 y=%2210%22 width=%224%22 height=%224%22 fill=%22%235a4a3a%22/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <script src="config.js"></script>
+<script src="music.js"></script>
 </head>
 <body>
 
@@ -18,23 +19,21 @@
 <main id="screen-landing" class="screen active">
   <div class="panel">
     <h1 class="title small">QUESTION THREE</h1>
-    <p class="sub">Balance 3 stones without toppling the stack.</p>
+    <p class="sub">Wait for the flag. Shoot the sheriff before he gets you.</p>
 
     <div class="battle-ui">
-      <span class="boss-name">STONES</span>
-      <span class="quiz-score">Stacked: <span id="stack-display">0</span> / 3</span>
+      <span class="boss-name">DUEL</span>
+      <span class="quiz-score">Hits: <span id="hits-display">0</span> / 3</span>
     </div>
 
     <div class="battle-box-wrap">
-      <canvas id="stack-canvas" width="280" height="240"></canvas>
+      <canvas id="duel-canvas" width="300" height="180"></canvas>
     </div>
 
-    <p id="battle-status" class="feedback">Tap DROP when the stone lines up.</p>
-
-    <button id="drop-btn" class="mc-btn mc-btn-blue" style="display:block; margin:10px auto 0;">DROP</button>
+    <p id="battle-status" class="feedback">Get ready...</p>
 
     <div id="death-box" class="puzzle-box hidden">
-      <p class="puzzle-text you-died">IT TOPPLED</p>
+      <p class="puzzle-text you-died" id="death-text">TOO SLOW</p>
       <button id="retry-btn" class="mc-btn mc-btn-blue">RETRY</button>
     </div>
 

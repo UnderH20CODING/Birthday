@@ -16,7 +16,7 @@ Then it's four questions in a row, each its own hidden page:
 |---|---|---|
 | `spawn.html` (Q1) | underh20's sword tier (lookup riddle) | Type `LT3` — answer comes from mcpvp.com |
 | `roblox.html` (Q2) | Tetris, but every piece is stamped with a letter cycling through S-M-E-G-M-A. | Clear 3 lines (arrows/buttons, Space to hard-drop) |
-| `channel.html` (Q3) | Balance stones: a moving stone slides left-right, drop it to land on the one below; land off-center and it topples (with a spring-damped wobble for the "physics" feel). | Stack 3 stones without one toppling |
+| `channel.html` (Q3) | Wild-West quick draw: a flag drops at a random time, then raises — shoot only after it's up. Draw early or too slow and the sheriff gets you. | Land 3 hits, each round faster than the last (650ms/500ms/380ms reaction windows) |
 | `boss.html` (Q4) | Undertale-style dodge fight — a red heart soul dodges a blocky pixel "SETH" sprite's kicks. Mouse always drives the heart on desktop; touch only moves it while pressed and dragged, since there's no hover on mobile. | Survive 25 seconds with 3 HP |
 
 Q1 has a wrong-answer hint pointing to the right site. Q2-Q4 each show
@@ -48,9 +48,22 @@ link into `spawn.html` (Q1) that's the actual entry point into the hunt.
 - `achievement.js` — the birthday answer
 - `quiz.js` — the `ANSWER_KEY`
 
-The shared code that gates the quiz lives in `config.js` (`SHARED_CODE`).
-The party details on the final invite (date, location, what to bring,
-RSVP) are directly in `index.html`.
+The shared code that gates the quiz lives in `config.js` (`SHARED_CODE`,
+currently `Seth18`). The party details on the final invite (date,
+location, what to bring, RSVP) are directly in `index.html`.
+
+## Music
+
+`music.js` is loaded on every page and plays a small synthesized 8-bit
+loop (Web Audio oscillators, no external audio files, so no licensing
+concerns). Browsers block audio until a user gesture, so it starts on
+the first click/keydown/touch anywhere on the page — there's also a
+🔊/🔇 button fixed in the bottom-right corner to mute it, which persists
+across pages via `localStorage`. Since this is a multi-page site (real
+navigations, not an SPA), the music restarts fresh on each new page
+after the first interaction there; the mute preference carries over,
+the audio itself doesn't. Edit the `MELODY` array in `music.js` to
+change the tune.
 
 ## Preview it locally
 

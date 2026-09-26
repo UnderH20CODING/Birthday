@@ -3,5 +3,5 @@
    ========================================================= */
 const CONFIG = {
   // The code guests type into index.html to reach the final quiz.
-  SHARED_CODE: "PVP18",
+  SHARED_CODE: "Seth18",
 };

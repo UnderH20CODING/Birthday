@@ -1,213 +1,183 @@
-/* channel.html logic — balance 3 stones on top of each other.
-   The moving stone slides left/right; drop it so it overlaps enough
-   with the stone below or it topples. A little spring-damped tilt
-   fakes the "physics" of an imperfect landing. */
+/* channel.html logic — Wild-West quick-draw reaction game.
+   A flag drops at a random time; shoot only after it's raised. Draw
+   too early, or too slow once it's up, and the sheriff gets you.
+   Click, tap, or Space to shoot. 3 rounds, each faster than the last. */
 
 const $ = (id) => document.getElementById(id);
 
-const canvas = $("stack-canvas");
+const canvas = $("duel-canvas");
 const ctx = canvas.getContext("2d");
 const W = canvas.width;
 const H = canvas.height;
-const GROUND_Y = 210;
-const STONE_H = 26;
-const MIN_OVERLAP = 16;
-const STONES_TO_WIN = 3;
-const GROUND_MIN_X = 20;
-const GROUND_MAX_X = W - 20;
-const GRAVITY = 420;
+const GROUND_Y = 140;
 
-let placed = [];
-let stackTopY = GROUND_Y;
-let current = null;
-let toppling = null;
+const THRESHOLDS_MS = [650, 500, 380];
+const ROUNDS_TO_WIN = THRESHOLDS_MS.length;
+const AUTO_FAIL_PADDING_MS = 400;
+
+const POLE_X = W / 2;
+const FLAG_DOWN_Y = GROUND_Y - 20;
+const FLAG_UP_Y = GROUND_Y - 70;
+
+let round = 0;
+let hits = 0;
+let roundState = "idle"; // idle -> waiting -> go -> (result)
+let flagRaiseTime = 0;
+let flagY = FLAG_DOWN_Y;
+let flagTargetY = FLAG_DOWN_Y;
+let waitTimeoutId = null;
+let autoFailTimeoutId = null;
+let flashUntil = 0;
+let flashColor = null;
 let running = true;
-let lastFrameTime = 0;
 let rafId = null;
 
-function clamp(v, min, max) {
-  return Math.max(min, Math.min(max, v));
+function updateHitsDisplay() {
+  $("hits-display").textContent = hits;
 }
 
-function spawnCurrent() {
-  const round = placed.length;
-  const width = Math.max(30, 90 * Math.pow(0.8, round));
-  const speed = 70 + round * 20;
-  current = {
-    width,
-    xCenter: W / 2,
-    y: stackTopY - 60,
-    vx: speed,
-  };
+function startRound() {
+  roundState = "waiting";
+  flagTargetY = FLAG_DOWN_Y;
+  $("battle-status").textContent = `Round ${round + 1}/${ROUNDS_TO_WIN} — wait for the flag...`;
+  const wait = 1000 + Math.random() * 2200;
+  waitTimeoutId = setTimeout(() => {
+    roundState = "go";
+    flagTargetY = FLAG_UP_Y;
+    flagRaiseTime = performance.now();
+    $("battle-status").textContent = "DRAW!";
+    autoFailTimeoutId = setTimeout(() => {
+      if (roundState === "go") {
+        loseDuel("TOO SLOW", "The sheriff got you.");
+      }
+    }, THRESHOLDS_MS[round] + AUTO_FAIL_PADDING_MS);
+  }, wait);
 }
 
-function supportRange() {
-  if (placed.length === 0) return { min: GROUND_MIN_X, max: GROUND_MAX_X };
-  const top = placed[placed.length - 1];
-  return { min: top.xMin, max: top.xMax };
-}
+function attemptShoot() {
+  if (!running) return;
 
-function doDrop() {
-  if (!running || !current || toppling) return;
-  const curMin = current.xCenter - current.width / 2;
-  const curMax = current.xCenter + current.width / 2;
-  const support = supportRange();
-  const overlapMin = Math.max(curMin, support.min);
-  const overlapMax = Math.min(curMax, support.max);
-  const overlapWidth = overlapMax - overlapMin;
-
-  if (overlapWidth < MIN_OVERLAP) {
-    toppling = {
-      xMin: curMin,
-      xMax: curMax,
-      y: current.y,
-      vx: current.vx * 0.6,
-      vy: 0,
-      rotation: 0,
-      angularVel: (curMin < support.min ? -1 : 1) * 4,
-    };
-    current = null;
+  if (roundState === "waiting") {
+    clearTimeout(waitTimeoutId);
+    loseDuel("TOO EARLY", "You drew before the flag went up.");
     return;
   }
 
-  const supportCenter = (support.min + support.max) / 2;
-  const offsetRatio = clamp((current.xCenter - supportCenter) / (current.width / 2), -1, 1);
-  const stone = {
-    xMin: overlapMin,
-    xMax: overlapMax,
-    y: stackTopY - STONE_H,
-    rotation: offsetRatio * 0.22,
-  };
-  placed.push(stone);
-  stackTopY = stone.y;
-  $("stack-display").textContent = placed.length;
-
-  if (placed.length >= STONES_TO_WIN) {
-    winStack();
-    return;
+  if (roundState === "go") {
+    clearTimeout(autoFailTimeoutId);
+    const reaction = performance.now() - flagRaiseTime;
+    if (reaction <= THRESHOLDS_MS[round]) {
+      hits++;
+      updateHitsDisplay();
+      flashColor = "good";
+      flashUntil = performance.now() + 200;
+      round++;
+      if (round >= ROUNDS_TO_WIN) {
+        winDuel();
+      } else {
+        roundState = "idle";
+        $("battle-status").textContent = `Hit! (${Math.round(reaction)}ms)`;
+        setTimeout(startRound, 1000);
+      }
+    } else {
+      loseDuel("TOO SLOW", `You drew in ${Math.round(reaction)}ms. Not fast enough.`);
+    }
   }
-  spawnCurrent();
 }
 
-$("drop-btn").addEventListener("click", doDrop);
-window.addEventListener("keydown", (e) => {
-  if (e.code === "Space") {
-    e.preventDefault();
-    doDrop();
-  }
-});
-canvas.addEventListener("mousedown", doDrop);
+canvas.addEventListener("mousedown", attemptShoot);
 canvas.addEventListener(
   "touchstart",
   (e) => {
     e.preventDefault();
-    doDrop();
+    attemptShoot();
   },
   { passive: false }
 );
+window.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    e.preventDefault();
+    attemptShoot();
+  }
+});
 
-function drawGround() {
-  ctx.fillStyle = "#3a2a1a";
+function drawScene(now) {
+  ctx.fillStyle = "#e8c77e";
+  ctx.fillRect(0, 0, W, GROUND_Y);
+  ctx.fillStyle = "#c9915a";
   ctx.fillRect(0, GROUND_Y, W, H - GROUND_Y);
-  ctx.fillStyle = "#5d9c3f";
-  ctx.fillRect(0, GROUND_Y, W, 4);
+
+  ctx.fillStyle = "#7a5230";
+  ctx.fillRect(POLE_X - 2, GROUND_Y - 90, 4, 90);
+  flagY += (flagTargetY - flagY) * 0.25;
+  ctx.fillStyle = "#d63b3b";
+  ctx.fillRect(POLE_X + 2, flagY, 20, 12);
+
+  drawPerson(70, "#1f7fd6", false);
+  drawPerson(W - 70, "#2b2b2b", true);
+
+  if (now < flashUntil) {
+    ctx.fillStyle = flashColor === "good" ? "rgba(93,156,63,0.35)" : "rgba(214,59,59,0.35)";
+    ctx.fillRect(0, 0, W, H);
+  }
 }
 
-function drawStone(centerX, centerY, width, rotation, color) {
-  ctx.save();
-  ctx.translate(centerX, centerY);
-  ctx.rotate(rotation);
-  ctx.fillStyle = color;
+function drawPerson(x, shirtColor, isSheriff) {
+  const y = GROUND_Y - 34;
+  ctx.fillStyle = shirtColor;
+  ctx.fillRect(x - 7, y + 12, 14, 20);
+  ctx.fillStyle = "#e8b98a";
   ctx.beginPath();
-  ctx.roundRect(-width / 2, -STONE_H / 2, width, STONE_H, 8);
+  ctx.arc(x, y + 6, 6, 0, Math.PI * 2);
   ctx.fill();
-  ctx.strokeStyle = "#000";
-  ctx.lineWidth = 2;
-  ctx.stroke();
-  ctx.restore();
+  if (isSheriff) {
+    ctx.fillStyle = "#3a2a1a";
+    ctx.fillRect(x - 9, y - 1, 18, 3);
+    ctx.fillRect(x - 5, y - 6, 10, 6);
+  }
+  ctx.fillStyle = shirtColor;
+  ctx.fillRect(x - 3, y + 32, 3, 8);
+  ctx.fillRect(x, y + 32, 3, 8);
 }
 
-function draw(dt) {
-  ctx.fillStyle = "#101012";
-  ctx.fillRect(0, 0, W, H);
-  drawGround();
-
-  placed.forEach((s, i) => {
-    const centerX = (s.xMin + s.xMax) / 2;
-    const width = s.xMax - s.xMin;
-    const centerY = s.y + STONE_H / 2;
-    s.rotation *= Math.pow(0.02, dt);
-    drawStone(centerX, centerY, width, s.rotation, "#8a8a8a");
-  });
-
-  if (current) {
-    current.xCenter += current.vx * dt;
-    if (current.xCenter - current.width / 2 < GROUND_MIN_X) {
-      current.xCenter = GROUND_MIN_X + current.width / 2;
-      current.vx *= -1;
-    } else if (current.xCenter + current.width / 2 > GROUND_MAX_X) {
-      current.xCenter = GROUND_MAX_X - current.width / 2;
-      current.vx *= -1;
-    }
-    drawStone(current.xCenter, current.y + STONE_H / 2, current.width, 0, "#a3a3a3");
-  }
-
-  if (toppling) {
-    toppling.vy += GRAVITY * dt;
-    toppling.y += toppling.vy * dt;
-    const midX = (toppling.xMin + toppling.xMax) / 2 + toppling.vx * dt;
-    toppling.xMin += toppling.vx * dt;
-    toppling.xMax += toppling.vx * dt;
-    toppling.rotation += toppling.angularVel * dt;
-    drawStone(midX, toppling.y + STONE_H / 2, toppling.xMax - toppling.xMin, toppling.rotation, "#a3a3a3");
-    if (toppling.y > H + 60) {
-      toppling = null;
-      loseStack();
-    }
-  }
-}
-
-function loseStack() {
+function loseDuel(title, message) {
   running = false;
-  $("battle-status").textContent = "It fell.";
+  $("death-text").textContent = title;
+  $("battle-status").textContent = message;
   $("death-box").classList.remove("hidden");
 }
 
-function winStack() {
+function winDuel() {
   running = false;
-  current = null;
-  $("battle-status").textContent = "Perfectly balanced.";
+  $("battle-status").textContent = "Sheriff's down. You win.";
   $("unlock-box").classList.remove("hidden");
 }
 
 function loop(now) {
-  if (!lastFrameTime) lastFrameTime = now;
-  const dt = Math.min((now - lastFrameTime) / 1000, 0.05);
-  lastFrameTime = now;
-
-  draw(dt);
-
-  if (running || toppling) {
-    rafId = requestAnimationFrame(loop);
-  }
+  drawScene(now);
+  if (running) rafId = requestAnimationFrame(loop);
 }
 
 function resetGame() {
-  placed = [];
-  stackTopY = GROUND_Y;
-  toppling = null;
+  clearTimeout(waitTimeoutId);
+  clearTimeout(autoFailTimeoutId);
+  round = 0;
+  hits = 0;
+  roundState = "idle";
+  flagY = FLAG_DOWN_Y;
+  flagTargetY = FLAG_DOWN_Y;
+  flashUntil = 0;
   running = true;
-  lastFrameTime = 0;
-  $("stack-display").textContent = "0";
+  updateHitsDisplay();
   $("death-box").classList.add("hidden");
   $("unlock-box").classList.add("hidden");
-  $("battle-status").textContent = "Tap DROP when the stone lines up.";
-  spawnCurrent();
   if (rafId) cancelAnimationFrame(rafId);
   rafId = requestAnimationFrame(loop);
+  startRound();
 }
 
 $("retry-btn").addEventListener("click", resetGame);
 
-spawnCurrent();
+updateHitsDisplay();
 rafId = requestAnimationFrame(loop);
+startRound();
