@@ -33,10 +33,11 @@ function loseHeart() {
 }
 
 /* ---------- chest open -> reveal ---------- */
-function playChestThenReveal() {
+function playChestThenReveal(completed) {
   showScreen("chest");
   setTimeout(() => {
     showScreen("reveal");
+    $("proof-box").classList.toggle("hidden", !completed);
   }, 1500);
 }
 
@@ -67,12 +68,12 @@ function handleCodeSubmit() {
 (function checkQuizPassed() {
   const params = new URLSearchParams(window.location.search);
   if (params.get("quizpassed") === "1") {
-    playChestThenReveal();
+    playChestThenReveal(true);
   }
 })();
 
 /* ---------- skip straight to invite ---------- */
 $("skip-link").addEventListener("click", (e) => {
   e.preventDefault();
-  playChestThenReveal();
+  playChestThenReveal(false);
 });
