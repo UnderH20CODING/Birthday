@@ -10,19 +10,19 @@ however you want (text, group chat, Instagram, whatever). It should
 link to `spawn.html`, which isn't linked from the homepage — it only
 exists for people who got your link.
 
-Then it's four minigames in a row, each its own hidden page, each on a
-`<canvas>` with no build step:
+Then it's four questions in a row, each its own hidden page:
 
-| Page | Game | To pass |
+| Page | Question/Game | To pass |
 |---|---|---|
-| `spawn.html` (Q1) | Green-Hill-Zone-style side-scroller. Intro: a big man carries her to the end of the course; then you run/jump the obstacle course chasing them. | Survive the full run with 3 HP (jump = Space/click/tap) |
+| `spawn.html` (Q1) | underh2o's sword PvP rank (lookup riddle) | Type `LT3` — answer comes from mcpvp.com |
 | `roblox.html` (Q2) | Tetris, but every piece is stamped with a letter cycling through S-M-E-G-M-A. | Clear 3 lines (arrows/buttons, Space to hard-drop) |
 | `channel.html` (Q3) | Balance stones: a moving stone slides left-right, drop it to land on the one below; land off-center and it topples (with a spring-damped wobble for the "physics" feel). | Stack 3 stones without one toppling |
 | `boss.html` (Q4) | Undertale-style dodge fight — a red heart soul dodges a blocky pixel "SETH" sprite's kicks. Mouse always drives the heart on desktop; touch only moves it while pressed and dragged, since there's no hover on mobile. | Survive 25 seconds with 3 HP |
 
-Each game shows a "NEXT QUESTION" button only once you've won, and a
-death/topple/game-over screen with a RETRY button that resets just that
-game in place (no page reload) if you lose.
+Q1 has a wrong-answer hint pointing to the right site. Q2-Q4 each show
+a "NEXT QUESTION" button only once you've won, and a death/topple/
+game-over screen with a RETRY button that resets just that game in
+place (no page reload) if you lose.
 
 **`achievement.html`** comes after Q4 — styled like a locked Minecraft
 achievement, it asks for the date "this legend respawns every year" (your
@@ -36,16 +36,17 @@ invite. Any wrong answer tells them which question numbers they missed
 and resets just the quiz (not the earlier stops) so they can retry.
 
 `index.html` also has a link straight to the invite for anyone who just
-wants the details without doing the hunt, and a "need a clue" link that
-drops people back at `spawn.html` (Q1) as a fallback entry point.
+wants the details without doing the hunt, and a "Click here to start"
+link into `spawn.html` (Q1) that's the actual entry point into the hunt.
 
 ## Tuning each game
 
-All the tunable constants (durations, HP, speeds, spawn rates, lines/
-stones needed to win) sit at the top of each page's own `.js` file:
-`spawn.js`, `roblox.js`, `channel.js`, `boss.js`. The birthday answer on
-`achievement.html` lives in `achievement.js`, and the quiz answer key is
-`ANSWER_KEY` in `quiz.js`.
+- `spawn.js` — rank answer (`LT3`), plus its wrong-answer hint text
+- `roblox.js`, `channel.js`, `boss.js` — the tunable constants (durations,
+  HP, speeds, spawn rates, lines/stones needed to win) sit at the top of
+  each file
+- `achievement.js` — the birthday answer
+- `quiz.js` — the `ANSWER_KEY`
 
 The shared code that gates the quiz lives in `config.js` (`SHARED_CODE`).
 The party details on the final invite (date, location, what to bring,
